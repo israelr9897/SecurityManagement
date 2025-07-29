@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserDTO } from 'src/DTO/userDto';
-
+import { UserDTO } from './user.Dto';
 @Injectable()
 export class UsersService {
   users: UserDTO[] = [];
@@ -14,7 +13,7 @@ export class UsersService {
     let user2: UserDTO = new UserDTO();
     user2.id = '2';
     user2.username = 'moshe';
-    user2.password = '0000';
+    user2.password = '000';
     user2.role = 'agant';
 
     this.users.push(user1);

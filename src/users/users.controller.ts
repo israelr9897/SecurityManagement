@@ -7,7 +7,7 @@ export class UsersController {
   constructor(private readonly usersSrv: UsersService) {}
 
   @Get()
-  getAllUsers(): UserDTO[] {
+  getAllUsers() {
     return this.usersSrv.getAllUsers();
   }
 }

@@ -1,35 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { UserDTO } from './user.Dto';
+import { DBService } from 'src/DB/DB.service';
+import { DalService } from 'src/DAL/dal.service';
 @Injectable()
 export class UsersService {
-  users: UserDTO[] = [];
-  constructor() {
-    let user1: UserDTO = new UserDTO();
-    user1.id = '1';
-    user1.username = 'israel';
-    user1.password = '1234';
-    user1.role = 'comander';
+  constructor(private readonly dalService: DalService) {}
 
-    let user2: UserDTO = new UserDTO();
-    user2.id = '2';
-    user2.username = 'moshe';
-    user2.password = '000';
-    user2.role = 'agant';
-
-    this.users.push(user1);
-    this.users.push(user2);
+  async getAllUsers() {
+    return await this.dalService.FindAll()
   }
 
-  getAllUsers(): UserDTO[] {
-    return this.users;
+  getUserByName(username: string): object {
+    return this.dalService.FindOneById(username)
   }
 
-  getUserByName(username: string): UserDTO | undefined {
-    return this.users.find((u) => u.username === username);
-  }
-
-addUser(user: UserDTO): object {
-    this.users.push(user);
+  addUser(user: UserDTO): object {
+    this.dalService.insertUser(user);
     return { msg: 'user added' };
   }
 }

@@ -1,12 +1,9 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { JwtService } from '@nestjs/jwt';
-import { config } from 'dotenv';
-
-config();
 
 @Injectable()
-export class CheckRole implements NestMiddleware {
+export class verifyToken implements NestMiddleware {
   constructor(private readonly jwt: JwtService) {}
 
   use(req: Request, res: Response, next: NextFunction) {

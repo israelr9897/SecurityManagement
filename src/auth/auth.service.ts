@@ -3,8 +3,7 @@ import { UserDTO } from '../users/user.Dto';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
-import { User } from 'src/modols/user';
-import e from 'express';
+import { error } from 'console';
 
 @Injectable()
 export class AuthService {
@@ -14,23 +13,17 @@ export class AuthService {
   ) {}
 
   async login(body: any): Promise<any> {
-    const { username, password } = body;
-    const user: any = await this.usersSrv.getUserByName(username);
-    console.log(typeof user);
-
-    if (!user) return;
-    const isTrue: boolean = await this.verifyPassword(
-      password,
-      user?.hash_password,
-    );
-    if (!isTrue) return;
+    const { id, password } = body;
+    const user: any = await this.usersSrv.getUserById(id);
+    if (!user) throw error;
+    const isTrue: boolean = await this.verifyPassword(password, user?.password);
+    if (!isTrue) throw error;
     const token = this.createToken(user);
     return token;
   }
 
   async signup(data: UserDTO): Promise<object> {
     data.password = await this.createHashPassword(data.password);
-    data.role = 'agant';
     return this.usersSrv.addUser(data);
   }
 

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { DBService } from 'src/DB/DB.service';
@@ -13,17 +13,17 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() body: object, @Res() res: Response) {
-    const token: string = await this.authSrv.login(body);
-    if (token) {
-      res.cookie('Authorization', token);
-      res.send('√ login');
-    } else {
-      res.send({ msg: 'not find' });
+    try {
+      const token: string = await this.authSrv.login(body);
+        res.cookie('Authorization', token);
+        res.send('√ login');
+    } catch (error) {
+      res.send({ msg: 'Incorrect username or password' });
+      
     }
   }
   @Post('signup')
   async signup(@Body() body: UserDTO) {
-    // await this.dbSrv.connect();
     return this.authSrv.signup(body);
   }
 }

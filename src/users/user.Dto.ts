@@ -8,7 +8,7 @@ export class UserDTO {
   @MinLength(4)
   password: string;
 
-  role: string;
+  role: 'soldier' | 'commander';
 
   email: string;
 }

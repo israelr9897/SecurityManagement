@@ -7,9 +7,9 @@ import { DalModule } from 'src/DAL/dal.module';
 
 @Module({
   imports: [DBModule, DalModule],
+  controllers: [UsersController],
   providers: [UsersService],
   exports: [UsersService],
-  controllers: [UsersController],
 })
 export class UsersModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

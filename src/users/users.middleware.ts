@@ -9,7 +9,7 @@ export class verifyToken implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     try {
       const token: string = req.cookies.Authorization;
-      const payload = this.jwt.verify(token, {
+      this.jwt.verify(token, {
         secret: process.env.JWT_SECRET,
       });
       next();

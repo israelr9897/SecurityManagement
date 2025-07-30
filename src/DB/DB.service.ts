@@ -24,7 +24,7 @@ export class DBService implements OnModuleInit, OnModuleDestroy {
             await this.sequelize.authenticate();
             console.log('Database connected successfully');
         } catch (error) {
-            console.error('Database connection failed:', error);
+            console.error('Database connection failed: ', error);
             throw error;
         }
     }
@@ -44,7 +44,7 @@ export class DBService implements OnModuleInit, OnModuleDestroy {
             await this.sequelize.sync({ force });
             console.log('Database synced successfully');
         } catch (error) {
-            console.error('Database sync failed:', error);
+            console.error('Database sync failed: ', error);
             throw error;
         }
     }

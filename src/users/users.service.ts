@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { UserDTO } from './user.Dto';
-import { DBService } from 'src/DB/DB.service';
 import { DalService } from 'src/DAL/dal.service';
+import { User } from 'src/modols/user';
 @Injectable()
 export class UsersService {
   constructor(private readonly dalService: DalService) {}
 
   async getAllUsers() {
-    return await this.dalService.FindAll()
+    return await this.dalService.findAll(User);
   }
 
-  getUserByName(username: string): object {
-    return this.dalService.FindOneById(username)
+  async getUserById(id: string) {
+    return await this.dalService.findOneById(User, id);
   }
 
   addUser(user: UserDTO): object {
-    this.dalService.insertUser(user);
+    this.dalService.insert(User, user);
     return { msg: 'user added' };
   }
 }

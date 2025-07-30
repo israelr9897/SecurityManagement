@@ -1,24 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { UserDTO } from 'src/users/user.Dto';
-import { User } from 'src/modols/user';
 
 @Injectable()
 export class DalService {
-  async FindAll(): Promise<object> {
-    return await User.findAll({ raw: true });
+  async findAll(nameTable: any): Promise<object> {
+    return await nameTable.findAll({ raw: true });
   }
 
-  async insertUser(user: any) {
-    console.log(user);
-    await User.create(user);
+  async findOneById(nameTable: any, id: string) {
+    return await nameTable.findOne({ where: { id: id } });
   }
-    async FindOneById(Username: string
-    ) {
-      return User.findOne({where: {username: Username}})
-    }
 
-  //   async InsertToUsers(nameTable: string, user: UserDTO) {
-  //     const db = await this.pool.connect();
-  //     const res = await db?.query(`SELECT * FROM ${nameTable} WHERE id = ${}`);
-  //   }
+  async insert(nameTable: any, data: any) {
+    await nameTable.create(data);
+  }
 }

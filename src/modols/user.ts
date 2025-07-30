@@ -23,7 +23,7 @@ export const User = sequelize.define(
     role: {
       type: DataTypes.STRING,
     },
-    hash_password: {
+    password: {
       type: DataTypes.STRING,
     },
   },

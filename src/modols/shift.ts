@@ -30,4 +30,5 @@ export const Shift = sequelize.define(
   },
 );
 
+
 Shift.sync();

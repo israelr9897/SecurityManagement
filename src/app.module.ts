@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 // import { AppController } from './app.controller';
 // import { AppService } from './app.service';
@@ -14,6 +14,7 @@ import { DalModule } from './DAL/dal.module';
 import { AssignmentController } from './assignment/assignment.controller';
 import { AssignmentService } from './assignment/assignment.service';
 import { AssignmentModule } from './assignment/assignment.module';
+import { verifyToken } from './users.middleware';
 
 @Module({
   imports: [
@@ -32,4 +33,8 @@ import { AssignmentModule } from './assignment/assignment.module';
   // controllers: [AppController],
   // providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(verifyToken).forRoutes('users', 'shifts', 'assignment');
+  }
+}

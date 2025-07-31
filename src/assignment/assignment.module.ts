@@ -1,4 +1,4 @@
-import { NestModule, MiddlewareConsumer, Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { DBModule } from 'src/DB/DB.module';
 import { DalModule } from 'src/DAL/dal.module';
 import { AssignmentService } from './assignment.service';

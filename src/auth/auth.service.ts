@@ -13,8 +13,8 @@ export class AuthService {
   ) {}
 
   async login(body: any): Promise<any> {
-    const { id, password } = body;
-    const user: any = await this.usersSrv.getUserById(id);
+    const { username, password } = body;
+    const user: any = await this.usersSrv.getUserByUsername(username);    
     if (!user) throw error;
     const isTrue: boolean = await this.verifyPassword(password, user?.password);
     if (!isTrue) throw error;

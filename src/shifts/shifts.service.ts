@@ -12,7 +12,7 @@ export class ShiftsService {
   }
 
   async getShiftById(id: string) {
-    return await this.dalService.findOneById(Shift, id);
+    return await this.dalService.findOneByUsername(Shift, id);
   }
 
   addShift(shift: ShiftDTO): object {

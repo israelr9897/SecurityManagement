@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { DBService } from 'src/DB/DB.service';
 
-// let u = new DBService();
 const sequelize = new DBService().getSequelize()
 
 export const User = sequelize.define(

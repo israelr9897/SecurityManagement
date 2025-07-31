@@ -11,6 +11,9 @@ import { ShiftsService } from './shifts/shifts.service';
 import { ShiftsController } from './shifts/shifts.controller';
 import { ShiftsModule } from './shifts/shifts.module';
 import { DalModule } from './DAL/dal.module';
+import { AssignmentController } from './assignment/assignment.controller';
+import { AssignmentService } from './assignment/assignment.service';
+import { AssignmentModule } from './assignment/assignment.module';
 
 @Module({
   imports: [
@@ -22,9 +25,10 @@ import { DalModule } from './DAL/dal.module';
     DBModule,
     DalModule,
     ShiftsModule,
+    AssignmentModule,
   ],
-  controllers: [AuthController, ShiftsController],
-  providers: [AuthService, ShiftsService],
+  controllers: [AuthController, ShiftsController, AssignmentController],
+  providers: [AuthService, ShiftsService, AssignmentService],
   // controllers: [AppController],
   // providers: [AppService],
 })

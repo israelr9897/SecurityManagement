@@ -14,8 +14,7 @@ export class UsersService {
     return await this.dalService.findOneById(User, id);
   }
 
-  addUser(user: UserDTO): object {
-    this.dalService.insert(User, user);
-    return { msg: 'user added' };
+  crateUser(user: UserDTO): object {
+    return this.dalService.insert(User, user);
   }
 }

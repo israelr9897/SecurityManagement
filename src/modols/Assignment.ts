@@ -30,7 +30,7 @@ export const Assignment = sequelize.define(
     },
   },
   {
-    tableName: 'Assignment',
+    tableName: 'Assignments',
     timestamps: false,
   },
 );

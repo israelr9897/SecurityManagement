@@ -24,7 +24,7 @@ export class AuthService {
 
   async signup(data: UserDTO): Promise<object> {
     data.password = await this.createHashPassword(data.password);
-    return this.usersSrv.addUser(data);
+    return this.usersSrv.crateUser(data);
   }
 
   createToken(user: UserDTO): string {

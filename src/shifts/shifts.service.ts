@@ -16,7 +16,6 @@ export class ShiftsService {
   }
 
   addShift(shift: ShiftDTO): object {
-    this.dalService.insert(Shift, shift);
-    return { msg: 'shift added' };
+    return this.dalService.insert(Shift, shift);
   }
 }

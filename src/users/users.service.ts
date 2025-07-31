@@ -10,8 +10,8 @@ export class UsersService {
     return await this.dalService.findAll(User);
   }
 
-  async getUserById(id: string) {
-    return await this.dalService.findOneById(User, id);
+  async getUserByUsername(username: string) {
+    return await this.dalService.findOneByUsername(User, username);
   }
 
   crateUser(user: UserDTO): object {

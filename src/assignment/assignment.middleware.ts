@@ -9,8 +9,8 @@ export class IsExistsUserIdAndShiftId implements NestMiddleware {
   constructor(private readonly dalService: DalService) {}
   async use(req: Request, res: Response, next: NextFunction) {
     const { userId, shiftId } = req.body;
-    const user = await this.dalService.findOneById(User, userId);
-    const shift = await this.dalService.findOneById(Shift, shiftId);
+    const user = await this.dalService.findOneByUsername(User, userId);
+    const shift = await this.dalService.findOneByUsername(Shift, shiftId);
     if (user && shift) {
       next();
     } else {

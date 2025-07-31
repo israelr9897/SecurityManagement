@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { DBService } from 'src/DB/DB.service';
+import { User } from './user';
 
 const sequelize = new DBService().getSequelize();
 
@@ -29,5 +30,6 @@ export const Shift = sequelize.define(
     timestamps: false,
   },
 );
+
 
 Shift.sync();

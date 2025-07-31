@@ -11,6 +11,10 @@ export class AssignmentService {
     return await this.dalService.findAll(Assignment);
   }
 
+  async getAssignmentByUserId(id: string): Promise<Array<any>> {
+    return await this.dalService.findShiftByUserId(id);
+  }
+
   async addAssignment(data: AssignmentDTO): Promise<object> {
     return await this.dalService.insert(Assignment, data);
   }
